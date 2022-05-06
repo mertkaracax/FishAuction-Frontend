@@ -45,33 +45,31 @@ function Register() {
 					height: height / 1.4,
 				}}
 			>
-				<form className="form">
-					<p>Role: {role}</p>
-					<div className="checkbox">
-						<div
-							className="checkbox-item"
-							style={{
-								backgroundColor:
-									role == "Customer" ? "#2d89de" : "white",
-								color: role == "Customer" ? "white" : "black",
-							}}
-							onClick={selectCustomer}
-						>
-							Customer
-						</div>
-						<div
-							style={{
-								backgroundColor:
-									role == "Cooperative Member" ? "#2d89de" : "white",
-								color: role == "Cooperative Member" ? "white" : "black",
-							}}
-							className="checkbox-item"
-							onClick={selectCoopMember}
-						>
-							Cooperative Member
-						</div>
+				<p>Role: {role}</p>
+				<div className="checkbox">
+					<div
+						className="checkbox-item"
+						style={{
+							backgroundColor: role == "Customer" ? "#2d89de" : "white",
+							color: role == "Customer" ? "white" : "black",
+						}}
+						onClick={selectCustomer}
+					>
+						Customer
 					</div>
-
+					<div
+						style={{
+							backgroundColor:
+								role == "Cooperative Member" ? "#2d89de" : "white",
+							color: role == "Cooperative Member" ? "white" : "black",
+						}}
+						className="checkbox-item"
+						onClick={selectCoopMember}
+					>
+						Cooperative Member
+					</div>
+				</div>
+				<form className="form">
 					<input
 						className="textInput"
 						placeholder="Email"
