@@ -53,7 +53,43 @@ function CMember() {
 					<p>Log out</p>
 				</a>
 			</div>
-			<div className="mid-part"></div>
+			<div className="mid-part">
+				<div className="box1">
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div style={{ marginBottom: "5%" }} className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Upcoming Auction: <br></br> Date: 28.05.2022
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

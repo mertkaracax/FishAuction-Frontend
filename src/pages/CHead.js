@@ -1,6 +1,7 @@
 import React from "react";
 import "../styling/CMember.css";
 import { useNavigate } from "react-router-dom";
+import { VscDebugStart } from "react-icons/vsc";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -48,10 +49,62 @@ function CHead() {
 						navigate("/");
 					}}
 				>
-					Log out
+					<p>Log out</p>
 				</a>
 			</div>
-			<div className="mid-part"></div>
+			<div className="mid-part">
+				<div className="box1">
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div style={{ marginBottom: "5%" }} className="list-item">
+						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
+						&nbsp;&nbsp;&nbsp;{" "}
+						<span style={{ color: "#AF862E" }}>Completed</span>
+					</div>
+					<div className="list-item">
+						<p style={{ fontSize: 11 }}>
+							Upcoming Auction: <br></br> Date: 28.05.2022
+						</p>
+						<span
+							style={{
+								// marginLeft: "60%",
+								position: "absolute",
+								right: "2%",
+								display: "flex",
+								flexDirection: "row",
+								alignItems: "center",
+								justifyContent: "center",
+							}}
+						>
+							<span>Start Auction</span>
+							<VscDebugStart color="green" size={30}></VscDebugStart>
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }
