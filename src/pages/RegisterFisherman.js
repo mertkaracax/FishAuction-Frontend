@@ -33,6 +33,9 @@ function RegisterFisherman() {
 					<p>Register Fisherman</p>
 				</a>
 				<a
+					onClick={() => {
+						navigate("/");
+					}}
 					style={{
 						position: "absolute",
 						bottom: "2%",

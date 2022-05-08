@@ -1,10 +1,11 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
 import CMember from "./pages/CMember";
 import CHead from "./pages/CHead";
 import RegisterFisherman from "./pages/RegisterFisherman";
+import Customer from "./pages/Customer";
 import {
 	FaGithub,
 	FaPhoneAlt,
@@ -19,6 +20,22 @@ import CreateCode from "./pages/CreateCode";
 import FadeLoader from "react-spinners/FadeLoader";
 
 function Root() {
+	useEffect(() => {
+		fetch(
+			"http://190.92.179.153/api/login/BastırAnkaraGücü/customer/canrollas/123can123"
+		)
+			.then((resp) => {
+				return resp.json();
+			})
+			.then((data) => {
+				console.log(data[0]);
+			}) // this returns a promise
+
+			.catch((ex) => {
+				console.error(ex);
+			});
+	});
+
 	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
@@ -27,6 +44,7 @@ function Root() {
 	const psw = "123";
 
 	const usn2 = "chead";
+	const usn3 = "customer";
 
 	const [trigger, setTrigger] = useState(false);
 
@@ -50,6 +68,9 @@ function Root() {
 				navigate("/CHead");
 				return true;
 			}, 2000);
+		} else if (uname.value == usn3 && pass.value == psw) {
+			console.log("Giriş başarılı");
+			navigate("/Customer");
 		} else {
 			setTrigger(true);
 			setTimeout(() => {
@@ -203,6 +224,7 @@ function App() {
 				></Route>
 				<Route path="/CHead" element={<CHead />}></Route>
 				<Route path="/CreateCode" element={<CreateCode />}></Route>
+				<Route path="/Customer" element={<Customer></Customer>}></Route>
 			</Routes>
 		</Router>
 	);
