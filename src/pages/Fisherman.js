@@ -1,12 +1,12 @@
 import React from "react";
 import "../styling/CMember.css";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-function CMember() {
+function Fisherman() {
 	const navigate = useNavigate();
 	const [renderState, setRenderState] = useState([]);
 	const renderAuctions = [];
@@ -35,7 +35,7 @@ function CMember() {
 					renderAuctions.push(
 						<div className="list-item">
 							Auction Name: {auctionsData[i].name}
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Auction date:
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Auction date: &nbsp;
 							{date.toLocaleDateString("en-US")}
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Auction Time: {hour}:
 							{minute}
@@ -48,7 +48,6 @@ function CMember() {
 				setRenderState(renderAuctions);
 			});
 	}, []);
-
 	return (
 		<div className="root1" style={{ width: width, height: height }}>
 			<div className="header1">Online Fish Auction System</div>
@@ -65,16 +64,21 @@ function CMember() {
 				<a className="menu-btn" style={{ color: "white" }}>
 					<p>Homepage</p>
 				</a>
-				<a className="menu-btn">
-					<p>Register Fish</p>
+				<a
+					className="menu-btn"
+					onClick={() => {
+						console.log("Button clicked");
+					}}
+				>
+					<p>Sale History</p>
 				</a>
 				<a
 					onClick={() => {
-						navigate("/RegisterFisherman");
+						console.log("BUTTON CLICKED");
 					}}
 					className="menu-btn"
 				>
-					<p>Register Fisherman</p>
+					<p>Payment Info</p>
 				</a>
 				<a
 					style={{
@@ -89,6 +93,7 @@ function CMember() {
 						justifyContent: "center ",
 					}}
 					onClick={() => {
+						sessionStorage.removeItem("customer");
 						navigate("/");
 					}}
 				>
@@ -102,4 +107,4 @@ function CMember() {
 	);
 }
 
-export default CMember;
+export default Fisherman;

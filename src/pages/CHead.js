@@ -2,12 +2,56 @@ import React from "react";
 import "../styling/CMember.css";
 import { useNavigate } from "react-router-dom";
 import { VscDebugStart } from "react-icons/vsc";
+import auth from "../Authentication/Auth";
+import { useEffect, useState } from "react";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 
 function CHead() {
 	const navigate = useNavigate();
+
+	const [renderState, setRenderState] = useState([]);
+	const renderAuctions = [];
+	useEffect(() => {
+		fetch(`http://190.92.179.153:8080/api/auction/fetchAuctions`)
+			.then((res) => res.json())
+			.then((json) => {
+				console.log(json);
+				return json;
+			})
+			.then((auctionsData) => {
+				for (var i = 0; i < auctionsData.length; i++) {
+					// const unixTime = auctionsData[i].date;
+					// const date = new Date(unixTime * 1000);
+
+					const date = new Date(auctionsData[i].date * 1000);
+					const hour =
+						date.getHours().toString().length == 1
+							? "0" + date.getHours().toString()
+							: date.getHours().toString();
+					const minute =
+						date.getMinutes().toString().length == 1
+							? "0" + date.getMinutes().toString()
+							: date.getMinutes().toString();
+
+					renderAuctions.push(
+						<div className="list-item">
+							Auction Name: {auctionsData[i].name}
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Auction date:
+							{date.toLocaleDateString("en-US")}
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Auction Time: {hour}:
+							{minute}
+						</div>
+					);
+				}
+				return renderAuctions;
+			})
+			.then((renderAuctions) => {
+				setRenderState(renderAuctions);
+			});
+	}, []);
+
 	return (
 		<div className="root1" style={{ width: width, height: height }}>
 			<div className="header1">Online Fish Auction System</div>
@@ -32,6 +76,14 @@ function CHead() {
 				>
 					<p>Create Code</p>
 				</a>
+				<a
+					className="menu-btn"
+					onClick={() => {
+						navigate("/ScheduleAuction");
+					}}
+				>
+					<p>Schedule Auction</p>
+				</a>
 
 				<a
 					style={{
@@ -46,6 +98,7 @@ function CHead() {
 						justifyContent: "center ",
 					}}
 					onClick={() => {
+						auth.logout();
 						navigate("/");
 					}}
 				>
@@ -53,57 +106,7 @@ function CHead() {
 				</a>
 			</div>
 			<div className="mid-part">
-				<div className="box1">
-					<div className="list-item">
-						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
-						&nbsp;&nbsp;&nbsp;{" "}
-						<span style={{ color: "#AF862E" }}>Completed</span>
-					</div>
-					<div className="list-item">
-						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
-						&nbsp;&nbsp;&nbsp;{" "}
-						<span style={{ color: "#AF862E" }}>Completed</span>
-					</div>
-					<div className="list-item">
-						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
-						&nbsp;&nbsp;&nbsp;{" "}
-						<span style={{ color: "#AF862E" }}>Completed</span>
-					</div>
-					<div className="list-item">
-						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
-						&nbsp;&nbsp;&nbsp;{" "}
-						<span style={{ color: "#AF862E" }}>Completed</span>
-					</div>
-					<div className="list-item">
-						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
-						&nbsp;&nbsp;&nbsp;{" "}
-						<span style={{ color: "#AF862E" }}>Completed</span>
-					</div>
-					<div style={{ marginBottom: "5%" }} className="list-item">
-						Auction Date: 23.03.2022 &nbsp;&nbsp; Auction Time: 14.04
-						&nbsp;&nbsp;&nbsp;{" "}
-						<span style={{ color: "#AF862E" }}>Completed</span>
-					</div>
-					<div className="list-item">
-						<p style={{ fontSize: 11 }}>
-							Upcoming Auction: <br></br> Date: 28.05.2022
-						</p>
-						<span
-							style={{
-								// marginLeft: "60%",
-								position: "absolute",
-								right: "2%",
-								display: "flex",
-								flexDirection: "row",
-								alignItems: "center",
-								justifyContent: "center",
-							}}
-						>
-							<span>Start Auction</span>
-							<VscDebugStart color="green" size={30}></VscDebugStart>
-						</span>
-					</div>
-				</div>
+				<div className="box1">{renderState}</div>
 			</div>
 		</div>
 	);

@@ -10,19 +10,34 @@ const height = window.innerHeight;
 function CreateCode() {
 	const navigate = useNavigate();
 
-	const [code, setCode] = useState("89XAY1");
+	const [code, setCode] = useState("Press refresh");
 
 	function handleRefresh() {
 		var newCode = "";
-		var possible =
-			"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		// var possible =
+		// 	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-		for (var i = 0; i < 6; i++)
-			newCode += possible.charAt(
-				Math.floor(Math.random() * possible.length)
-			);
-		setCode(newCode.toUpperCase());
-		return newCode.toUpperCase();
+		// for (var i = 0; i < 6; i++)
+		// 	newCode += possible.charAt(
+		// 		Math.floor(Math.random() * possible.length)
+		// 	);
+		// setCode(newCode.toUpperCase());
+
+		fetch(`http://190.92.179.153:8080/api/cooperativeHead/getCode`, {
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			method: "POST",
+			body: JSON.stringify({}),
+		})
+			.then((res) => res.json())
+			.then((json) => {
+				console.log(json);
+				setCode(json.memberCode);
+				console.log(json.memberCode);
+			});
+		return newCode;
 	}
 	return (
 		<div className="root1" style={{ width: width, height: height }}>
@@ -52,6 +67,14 @@ function CreateCode() {
 					}}
 				>
 					<p style={{ color: "white" }}>Create Code</p>
+				</a>
+				<a
+					className="menu-btn"
+					onClick={() => {
+						navigate("/ScheduleAuction");
+					}}
+				>
+					<p>Schedule Auction</p>
 				</a>
 
 				<a

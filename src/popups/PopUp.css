@@ -11,6 +11,7 @@
 	justify-content: center;
 	align-items: center;
 	position: fixed;
+	z-index: 5;
 }
 
 .rectangle {
@@ -19,6 +20,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	border: 2px solid #2d89de96;
 	background-color: white;
 	position: relative;
